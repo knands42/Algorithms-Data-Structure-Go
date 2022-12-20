@@ -24,9 +24,5 @@ func isAnagram(s string, t string) bool {
 		}
 	}
 
-	if len(dict) == 0 {
-		return true
-	}
-
-	return false
+	return len(dict) == 0
 }
