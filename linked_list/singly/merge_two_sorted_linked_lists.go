@@ -1,6 +1,28 @@
 package singly
 
-func MergeTwoSortedLinkedLists[T int](list1 *Node[T], list2 *Node[T]) *Node[T] {
+func MergeTwoSortedLinkedListsRecursively[T int](list1 *Node[T], list2 *Node[T]) *Node[T] {
+	if list1 == nil {
+		return list2
+	}
+
+	if list2 == nil {
+		return list1
+	}
+
+	var mergedList *Node[T]
+
+	if list1.value <= list2.value {
+		mergedList = list1
+		mergedList.next = MergeTwoSortedLinkedListsRecursively(list1.next, list2)
+	} else {
+		mergedList = list2
+		mergedList.next = MergeTwoSortedLinkedListsRecursively(list1, list2.next)
+	}
+
+	return mergedList
+}
+
+func MergeTwoSortedLinkedListsIteration[T int](list1 *Node[T], list2 *Node[T]) *Node[T] {
 	var newList *Node[T]
 
 	if list1 == nil {
@@ -9,27 +31,34 @@ func MergeTwoSortedLinkedLists[T int](list1 *Node[T], list2 *Node[T]) *Node[T] {
 		return list1
 	}
 
-	currentList1 := list1
-	currentList2 := list2
-	for currentList1.next != nil && currentList2.next != nil {
-		if currentList1.value > currentList2.value {
-			newList.next = currentList2
-			currentList2 = currentList2.next
+	if list1.value <= list2.value {
+		newList = list1
+		list1 = list1.next
+	} else {
+		newList = list2
+		list2 = list2.next
+	}
+
+	currentNode := newList
+
+	for list1 != nil && list2 != nil {
+		if list1.value <= list2.value {
+			currentNode.next = list1
+			list1 = list1.next
 		} else {
-			newList.next = currentList1
-			currentList1 = currentList1.next
+			currentNode.next = list2
+			list2 = list2.next
 		}
+		currentNode = currentNode.next
+
 	}
 
-	for currentList1.next != nil {
-		newList.next = currentList1.next
-		currentList1 = currentList1.next
-	}
-
-	for currentList2.next != nil {
-		newList.next = currentList2.next
-		currentList2 = currentList2.next
+	if list1 != nil {
+		currentNode.next = list1
+	} else if list2 != nil {
+		currentNode.next = list2
 	}
 
 	return newList
+
 }
