@@ -1,6 +1,6 @@
 # Algorithms-Data-Structure-Go
 
- A place to put all my solved algorithm exervices and data structure
+ A place to put all my solved algorithm exervices and data structure in Golang
 
 ## Running golang code
 
