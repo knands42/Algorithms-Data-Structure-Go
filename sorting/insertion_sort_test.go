@@ -12,3 +12,10 @@ func Test_InsertionSort(t *testing.T) {
 
 	require.Equal(t, []int{1, 2, 3, 4, 5}, result)
 }
+
+func Test_InsertionSort2(t *testing.T) {
+	numbers := []int{3, 5, 1, 2, 4}
+	result := insertionSort2(numbers)
+
+	require.Equal(t, []int{1, 2, 3, 4, 5}, result)
+}
