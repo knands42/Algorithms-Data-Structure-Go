@@ -3,7 +3,7 @@ package easy
 type Stack []string
 
 func (s *Stack) Push(item string) {
-	*s = append((*s), item)
+	*s = append(*s, item)
 }
 func (s *Stack) Pop() (string, bool) {
 	if s.Empty() {
