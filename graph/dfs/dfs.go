@@ -2,6 +2,7 @@ package dfs
 
 import "fmt"
 
+// Node Represents a node in a graph using adjacency list
 type Node[T comparable] struct {
 	Val       T
 	Neighbors []*Node[T]
@@ -30,6 +31,7 @@ func (g *Graph[T]) AddNode(node *Node[T]) *Node[T] {
 	return node
 }
 
+// Dfs O(V + E) time complexity where V is the number of vertices and E is the number of edges
 func (g *Graph[T]) Dfs(nodeAt *Node[T]) {
 	if nodeAt == nil || nodeAt.Visited {
 		return
@@ -42,6 +44,7 @@ func (g *Graph[T]) Dfs(nodeAt *Node[T]) {
 	}
 }
 
+// FindComponents O(V + E) time complexity where V is the number of vertices and E is the number of edges
 func (g *Graph[T]) FindComponents() int {
 	count := 0
 	for i := 0; i < len(g.Nodes); i++ {
